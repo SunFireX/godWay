@@ -1,0 +1,46 @@
+server:
+  port: 9090
+
+spring:
+# rabbitmq配置
+  rabbitmq:
+    host: 127.0.0.1
+    port: 15672
+    virtual-host: vhost
+    username: weiming.sun
+    password: weiming.sun
+    connection-timeout: 15000
+    publisher-confirms: true
+    publisher-returns: true
+    template:
+      mandatory: true
+    # 消费端手动确认
+    listener:
+      simple:
+        acknowledge-mode: manual
+        # 并发消费
+        concurrency: 5
+        max-concurrency: 10
+  context-path: /
+  datasource:
+     url: jdbc:mysql://uat.mysql.daoyitong.com/pavo_internet_hospital?useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&autoReconnect=true
+     data-source-class-name: com.mysql.jdbc.Driver
+     username: daoyitong
+     password: dyt_mysql_456
+     initial-size: 10
+     maximum-pool-size: 300
+     max-idle: 30
+     min-idle: 2
+     max-wait: 60000
+     max-active: 1000
+     connection-test-query: select 1
+     validation-interval: 30000
+     validation-query: select 1
+     time-between-eviction-runs-millis: 3600000
+     min-evictable-idle-time-millis: 18000000
+     default-read-only: false
+     test-on-borrow: true
+     test-on-return: true
+     test-while-idle: true
+     read-only: true
+     jdbc-interceptors: org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer

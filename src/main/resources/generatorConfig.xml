@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+    <context
+        id="context1"
+        targetRuntime="MyBatis3">
+        <commentGenerator>
+            <!-- 去除自动生成的注释 -->
+            <property
+                name="suppressAllComments"
+                value="true" />
+        </commentGenerator>
+        <jdbcConnection
+            driverClass="com.mysql.jdbc.Driver"
+            connectionURL="jdbc:mysql://db.dyt.ikang.com:3306/pavo_tailor?useUnicode=true&amp;characterEncoding=UTF-8"
+            userId="daoyitong"
+            password="dyt_mysql_456" />
+        <javaModelGenerator
+            targetPackage="com.dyt.swm.godway.entity"
+            targetProject="godway/src/main/java" />
+        <sqlMapGenerator
+            targetPackage="config.mybatis.mapper"
+            targetProject="godway/src/main/resources" />
+        <javaClientGenerator
+            type="XMLMAPPER"
+            targetPackage="com.dyt.swm.godway.mybatis.mapper"
+            targetProject="godway/src/main/java" />
+
+        <table
+            tableName="pavo_third_msg_record"
+            domainObjectName="ThirdOrderMsg"></table>
+
+    </context>
+</generatorConfiguration>

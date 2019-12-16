@@ -1,0 +1,891 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dyt.swm.godway.mybatis.mappper.InterHospOrderMapper">
+  <resultMap id="BaseResultMap" type="com.dyt.swm.godway.entity.InterHospOrder">
+    <id column="med_rd_no" jdbcType="VARCHAR" property="medRdNo" />
+    <result column="org_code" jdbcType="VARCHAR" property="orgCode" />
+    <result column="reservation_time" jdbcType="TIMESTAMP" property="reservationTime" />
+    <result column="reservation_finish_time" jdbcType="TIMESTAMP" property="reservationFinishTime" />
+    <result column="visit_time" jdbcType="TIMESTAMP" property="visitTime" />
+    <result column="visit_finish_time" jdbcType="TIMESTAMP" property="visitFinishTime" />
+    <result column="visit_dept_code" jdbcType="VARCHAR" property="visitDeptCode" />
+    <result column="visit_dept_name" jdbcType="VARCHAR" property="visitDeptName" />
+    <result column="visit_doc_id" jdbcType="VARCHAR" property="visitDocId" />
+    <result column="visit_doc_code" jdbcType="VARCHAR" property="visitDocCode" />
+    <result column="visit_doc_name" jdbcType="VARCHAR" property="visitDocName" />
+    <result column="pt_id" jdbcType="VARCHAR" property="ptId" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="med_class_code" jdbcType="VARCHAR" property="medClassCode" />
+    <result column="med_class_name" jdbcType="VARCHAR" property="medClassName" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="pt_name" jdbcType="VARCHAR" property="ptName" />
+    <result column="pt_head_pic" jdbcType="VARCHAR" property="ptHeadPic" />
+    <result column="ge_code" jdbcType="VARCHAR" property="geCode" />
+    <result column="ge_name" jdbcType="VARCHAR" property="geName" />
+    <result column="pt_age" jdbcType="INTEGER" property="ptAge" />
+    <result column="pt_birthdate" jdbcType="DATE" property="ptBirthdate" />
+    <result column="id_no" jdbcType="VARCHAR" property="idNo" />
+    <result column="pt_tel" jdbcType="VARCHAR" property="ptTel" />
+    <result column="diseases_code" jdbcType="VARCHAR" property="diseasesCode" />
+    <result column="diseases_name" jdbcType="VARCHAR" property="diseasesName" />
+    <result column="complaint_content" jdbcType="VARCHAR" property="complaintContent" />
+    <result column="present_illness" jdbcType="VARCHAR" property="presentIllness" />
+    <result column="past_history" jdbcType="VARCHAR" property="pastHistory" />
+    <result column="illness_pic" jdbcType="VARCHAR" property="illnessPic" />
+    <result column="pt_district" jdbcType="VARCHAR" property="ptDistrict" />
+    <result column="ask_or_med" jdbcType="INTEGER" property="askOrMed" />
+    <result column="proc_file" jdbcType="VARCHAR" property="procFile" />
+    <result column="status_code" jdbcType="VARCHAR" property="statusCode" />
+    <result column="pay_flow_number" jdbcType="VARCHAR" property="payFlowNumber" />
+    <result column="pay_amount" jdbcType="DECIMAL" property="payAmount" />
+    <result column="pay_code" jdbcType="INTEGER" property="payCode" />
+    <result column="pay_name" jdbcType="VARCHAR" property="payName" />
+    <result column="pay_time" jdbcType="TIMESTAMP" property="payTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="modify_date" jdbcType="TIMESTAMP" property="modifyDate" />
+    <result column="modify_by" jdbcType="VARCHAR" property="modifyBy" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    med_rd_no, org_code, reservation_time, reservation_finish_time, visit_time, visit_finish_time,
+    visit_dept_code, visit_dept_name, visit_doc_id, visit_doc_code, visit_doc_name, pt_id,
+    user_id, med_class_code, med_class_name, price, pt_name, pt_head_pic, ge_code, ge_name,
+    pt_age, pt_birthdate, id_no, pt_tel, diseases_code, diseases_name, complaint_content,
+    present_illness, past_history, illness_pic, pt_district, ask_or_med, proc_file, status_code,
+    pay_flow_number, pay_amount, pay_code, pay_name, pay_time, create_time, create_by,
+    modify_date, modify_by, remark
+  </sql>
+  <sql id="pagingExample">
+    <if test="pagingExample != null">
+      limit ${pagingExample.offset}, ${pagingExample.limit}
+    </if>
+  </sql>
+
+  <select id="selectByExample" parameterType="com.ikang.interhosp.entity.InterHospOrderExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from inter_hosp_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <include refid="pagingExample" />
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from inter_hosp_order
+    where med_rd_no = #{medRdNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from inter_hosp_order
+    where med_rd_no = #{medRdNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ikang.interhosp.entity.InterHospOrderExample">
+    delete from inter_hosp_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ikang.interhosp.entity.InterHospOrder">
+    insert into inter_hosp_order (med_rd_no, org_code, reservation_time,
+      reservation_finish_time, visit_time, visit_finish_time,
+      visit_dept_code, visit_dept_name, visit_doc_id,
+      visit_doc_code, visit_doc_name, pt_id, 
+      user_id, med_class_code, med_class_name, 
+      price, pt_name, pt_head_pic, 
+      ge_code, ge_name, pt_age, 
+      pt_birthdate, id_no, pt_tel, 
+      diseases_code, diseases_name, complaint_content, 
+      present_illness, past_history, illness_pic, 
+      pt_district, ask_or_med, proc_file, 
+      status_code, pay_flow_number, pay_amount,
+      pay_code, pay_name, pay_time,
+      create_time, create_by, modify_date,
+      modify_by, remark)
+    values (#{medRdNo,jdbcType=VARCHAR}, #{orgCode,jdbcType=VARCHAR}, #{reservationTime,jdbcType=TIMESTAMP},
+      #{reservationFinishTime,jdbcType=TIMESTAMP}, #{visitTime,jdbcType=TIMESTAMP}, #{visitFinishTime,jdbcType=TIMESTAMP},
+      #{visitDeptCode,jdbcType=VARCHAR}, #{visitDeptName,jdbcType=VARCHAR}, #{visitDocId,jdbcType=VARCHAR},
+      #{visitDocCode,jdbcType=VARCHAR}, #{visitDocName,jdbcType=VARCHAR}, #{ptId,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=VARCHAR}, #{medClassCode,jdbcType=VARCHAR}, #{medClassName,jdbcType=VARCHAR}, 
+      #{price,jdbcType=DECIMAL}, #{ptName,jdbcType=VARCHAR}, #{ptHeadPic,jdbcType=VARCHAR}, 
+      #{geCode,jdbcType=VARCHAR}, #{geName,jdbcType=VARCHAR}, #{ptAge,jdbcType=INTEGER}, 
+      #{ptBirthdate,jdbcType=DATE}, #{idNo,jdbcType=VARCHAR}, #{ptTel,jdbcType=VARCHAR}, 
+      #{diseasesCode,jdbcType=VARCHAR}, #{diseasesName,jdbcType=VARCHAR}, #{complaintContent,jdbcType=VARCHAR}, 
+      #{presentIllness,jdbcType=VARCHAR}, #{pastHistory,jdbcType=VARCHAR}, #{illnessPic,jdbcType=VARCHAR}, 
+      #{ptDistrict,jdbcType=VARCHAR}, #{askOrMed,jdbcType=INTEGER}, #{procFile,jdbcType=VARCHAR}, 
+      #{statusCode,jdbcType=VARCHAR}, #{payFlowNumber,jdbcType=VARCHAR}, #{payAmount,jdbcType=DECIMAL},
+      #{payCode,jdbcType=INTEGER}, #{payName,jdbcType=VARCHAR}, #{payTime,jdbcType=TIMESTAMP},
+      #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR}, #{modifyDate,jdbcType=TIMESTAMP},
+      #{modifyBy,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ikang.interhosp.entity.InterHospOrder">
+    insert into inter_hosp_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="medRdNo != null">
+        med_rd_no,
+      </if>
+      <if test="orgCode != null">
+        org_code,
+      </if>
+      <if test="reservationTime != null">
+        reservation_time,
+      </if>
+      <if test="reservationFinishTime != null">
+        reservation_finish_time,
+      </if>
+      <if test="visitTime != null">
+        visit_time,
+      </if>
+      <if test="visitFinishTime != null">
+        visit_finish_time,
+      </if>
+      <if test="visitDeptCode != null">
+        visit_dept_code,
+      </if>
+      <if test="visitDeptName != null">
+        visit_dept_name,
+      </if>
+      <if test="visitDocId != null">
+        visit_doc_id,
+      </if>
+      <if test="visitDocCode != null">
+        visit_doc_code,
+      </if>
+      <if test="visitDocName != null">
+        visit_doc_name,
+      </if>
+      <if test="ptId != null">
+        pt_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="medClassCode != null">
+        med_class_code,
+      </if>
+      <if test="medClassName != null">
+        med_class_name,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="ptName != null">
+        pt_name,
+      </if>
+      <if test="ptHeadPic != null">
+        pt_head_pic,
+      </if>
+      <if test="geCode != null">
+        ge_code,
+      </if>
+      <if test="geName != null">
+        ge_name,
+      </if>
+      <if test="ptAge != null">
+        pt_age,
+      </if>
+      <if test="ptBirthdate != null">
+        pt_birthdate,
+      </if>
+      <if test="idNo != null">
+        id_no,
+      </if>
+      <if test="ptTel != null">
+        pt_tel,
+      </if>
+      <if test="diseasesCode != null">
+        diseases_code,
+      </if>
+      <if test="diseasesName != null">
+        diseases_name,
+      </if>
+      <if test="complaintContent != null">
+        complaint_content,
+      </if>
+      <if test="presentIllness != null">
+        present_illness,
+      </if>
+      <if test="pastHistory != null">
+        past_history,
+      </if>
+      <if test="illnessPic != null">
+        illness_pic,
+      </if>
+      <if test="ptDistrict != null">
+        pt_district,
+      </if>
+      <if test="askOrMed != null">
+        ask_or_med,
+      </if>
+      <if test="procFile != null">
+        proc_file,
+      </if>
+      <if test="statusCode != null">
+        status_code,
+      </if>
+      <if test="payFlowNumber != null">
+        pay_flow_number,
+      </if>
+      <if test="payAmount != null">
+        pay_amount,
+      </if>
+      <if test="payCode != null">
+        pay_code,
+      </if>
+      <if test="payName != null">
+        pay_name,
+      </if>
+      <if test="payTime != null">
+        pay_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="modifyDate != null">
+        modify_date,
+      </if>
+      <if test="modifyBy != null">
+        modify_by,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="medRdNo != null">
+        #{medRdNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCode != null">
+        #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="reservationTime != null">
+        #{reservationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reservationFinishTime != null">
+        #{reservationFinishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="visitTime != null">
+        #{visitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="visitFinishTime != null">
+        #{visitFinishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="visitDeptCode != null">
+        #{visitDeptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="visitDeptName != null">
+        #{visitDeptName,jdbcType=VARCHAR},
+      </if>
+      <if test="visitDocId != null">
+        #{visitDocId,jdbcType=VARCHAR},
+      </if>
+      <if test="visitDocCode != null">
+        #{visitDocCode,jdbcType=VARCHAR},
+      </if>
+      <if test="visitDocName != null">
+        #{visitDocName,jdbcType=VARCHAR},
+      </if>
+      <if test="ptId != null">
+        #{ptId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="medClassCode != null">
+        #{medClassCode,jdbcType=VARCHAR},
+      </if>
+      <if test="medClassName != null">
+        #{medClassName,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="ptName != null">
+        #{ptName,jdbcType=VARCHAR},
+      </if>
+      <if test="ptHeadPic != null">
+        #{ptHeadPic,jdbcType=VARCHAR},
+      </if>
+      <if test="geCode != null">
+        #{geCode,jdbcType=VARCHAR},
+      </if>
+      <if test="geName != null">
+        #{geName,jdbcType=VARCHAR},
+      </if>
+      <if test="ptAge != null">
+        #{ptAge,jdbcType=INTEGER},
+      </if>
+      <if test="ptBirthdate != null">
+        #{ptBirthdate,jdbcType=DATE},
+      </if>
+      <if test="idNo != null">
+        #{idNo,jdbcType=VARCHAR},
+      </if>
+      <if test="ptTel != null">
+        #{ptTel,jdbcType=VARCHAR},
+      </if>
+      <if test="diseasesCode != null">
+        #{diseasesCode,jdbcType=VARCHAR},
+      </if>
+      <if test="diseasesName != null">
+        #{diseasesName,jdbcType=VARCHAR},
+      </if>
+      <if test="complaintContent != null">
+        #{complaintContent,jdbcType=VARCHAR},
+      </if>
+      <if test="presentIllness != null">
+        #{presentIllness,jdbcType=VARCHAR},
+      </if>
+      <if test="pastHistory != null">
+        #{pastHistory,jdbcType=VARCHAR},
+      </if>
+      <if test="illnessPic != null">
+        #{illnessPic,jdbcType=VARCHAR},
+      </if>
+      <if test="ptDistrict != null">
+        #{ptDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="askOrMed != null">
+        #{askOrMed,jdbcType=INTEGER},
+      </if>
+      <if test="procFile != null">
+        #{procFile,jdbcType=VARCHAR},
+      </if>
+      <if test="statusCode != null">
+        #{statusCode,jdbcType=VARCHAR},
+      </if>
+      <if test="payFlowNumber != null">
+        #{payFlowNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="payAmount != null">
+        #{payAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="payCode != null">
+        #{payCode,jdbcType=INTEGER},
+      </if>
+      <if test="payName != null">
+        #{payName,jdbcType=VARCHAR},
+      </if>
+      <if test="payTime != null">
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyDate != null">
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyBy != null">
+        #{modifyBy,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ikang.interhosp.entity.InterHospOrderExample" resultType="java.lang.Long">
+    select count(*) from inter_hosp_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update inter_hosp_order
+    <set>
+      <if test="record.medRdNo != null">
+        med_rd_no = #{record.medRdNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgCode != null">
+        org_code = #{record.orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reservationTime != null">
+        reservation_time = #{record.reservationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.reservationFinishTime != null">
+        reservation_finish_time = #{record.reservationFinishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.visitTime != null">
+        visit_time = #{record.visitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.visitFinishTime != null">
+        visit_finish_time = #{record.visitFinishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.visitDeptCode != null">
+        visit_dept_code = #{record.visitDeptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.visitDeptName != null">
+        visit_dept_name = #{record.visitDeptName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.visitDocId != null">
+        visit_doc_id = #{record.visitDocId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.visitDocCode != null">
+        visit_doc_code = #{record.visitDocCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.visitDocName != null">
+        visit_doc_name = #{record.visitDocName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ptId != null">
+        pt_id = #{record.ptId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.medClassCode != null">
+        med_class_code = #{record.medClassCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.medClassName != null">
+        med_class_name = #{record.medClassName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.price != null">
+        price = #{record.price,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ptName != null">
+        pt_name = #{record.ptName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ptHeadPic != null">
+        pt_head_pic = #{record.ptHeadPic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.geCode != null">
+        ge_code = #{record.geCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.geName != null">
+        ge_name = #{record.geName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ptAge != null">
+        pt_age = #{record.ptAge,jdbcType=INTEGER},
+      </if>
+      <if test="record.ptBirthdate != null">
+        pt_birthdate = #{record.ptBirthdate,jdbcType=DATE},
+      </if>
+      <if test="record.idNo != null">
+        id_no = #{record.idNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ptTel != null">
+        pt_tel = #{record.ptTel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diseasesCode != null">
+        diseases_code = #{record.diseasesCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diseasesName != null">
+        diseases_name = #{record.diseasesName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.complaintContent != null">
+        complaint_content = #{record.complaintContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.presentIllness != null">
+        present_illness = #{record.presentIllness,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pastHistory != null">
+        past_history = #{record.pastHistory,jdbcType=VARCHAR},
+      </if>
+      <if test="record.illnessPic != null">
+        illness_pic = #{record.illnessPic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ptDistrict != null">
+        pt_district = #{record.ptDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="record.askOrMed != null">
+        ask_or_med = #{record.askOrMed,jdbcType=INTEGER},
+      </if>
+      <if test="record.procFile != null">
+        proc_file = #{record.procFile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.statusCode != null">
+        status_code = #{record.statusCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payFlowNumber != null">
+        pay_flow_number = #{record.payFlowNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payAmount != null">
+        pay_amount = #{record.payAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.payCode != null">
+        pay_code = #{record.payCode,jdbcType=INTEGER},
+      </if>
+      <if test="record.payName != null">
+        pay_name = #{record.payName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payTime != null">
+        pay_time = #{record.payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createBy != null">
+        create_by = #{record.createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.modifyDate != null">
+        modify_date = #{record.modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifyBy != null">
+        modify_by = #{record.modifyBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update inter_hosp_order
+    set med_rd_no = #{record.medRdNo,jdbcType=VARCHAR},
+      org_code = #{record.orgCode,jdbcType=VARCHAR},
+      reservation_time = #{record.reservationTime,jdbcType=TIMESTAMP},
+      reservation_finish_time = #{record.reservationFinishTime,jdbcType=TIMESTAMP},
+      visit_time = #{record.visitTime,jdbcType=TIMESTAMP},
+      visit_finish_time = #{record.visitFinishTime,jdbcType=TIMESTAMP},
+      visit_dept_code = #{record.visitDeptCode,jdbcType=VARCHAR},
+      visit_dept_name = #{record.visitDeptName,jdbcType=VARCHAR},
+      visit_doc_id = #{record.visitDocId,jdbcType=VARCHAR},
+      visit_doc_code = #{record.visitDocCode,jdbcType=VARCHAR},
+      visit_doc_name = #{record.visitDocName,jdbcType=VARCHAR},
+      pt_id = #{record.ptId,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=VARCHAR},
+      med_class_code = #{record.medClassCode,jdbcType=VARCHAR},
+      med_class_name = #{record.medClassName,jdbcType=VARCHAR},
+      price = #{record.price,jdbcType=DECIMAL},
+      pt_name = #{record.ptName,jdbcType=VARCHAR},
+      pt_head_pic = #{record.ptHeadPic,jdbcType=VARCHAR},
+      ge_code = #{record.geCode,jdbcType=VARCHAR},
+      ge_name = #{record.geName,jdbcType=VARCHAR},
+      pt_age = #{record.ptAge,jdbcType=INTEGER},
+      pt_birthdate = #{record.ptBirthdate,jdbcType=DATE},
+      id_no = #{record.idNo,jdbcType=VARCHAR},
+      pt_tel = #{record.ptTel,jdbcType=VARCHAR},
+      diseases_code = #{record.diseasesCode,jdbcType=VARCHAR},
+      diseases_name = #{record.diseasesName,jdbcType=VARCHAR},
+      complaint_content = #{record.complaintContent,jdbcType=VARCHAR},
+      present_illness = #{record.presentIllness,jdbcType=VARCHAR},
+      past_history = #{record.pastHistory,jdbcType=VARCHAR},
+      illness_pic = #{record.illnessPic,jdbcType=VARCHAR},
+      pt_district = #{record.ptDistrict,jdbcType=VARCHAR},
+      ask_or_med = #{record.askOrMed,jdbcType=INTEGER},
+      proc_file = #{record.procFile,jdbcType=VARCHAR},
+      status_code = #{record.statusCode,jdbcType=VARCHAR},
+      pay_flow_number = #{record.payFlowNumber,jdbcType=VARCHAR},
+      pay_amount = #{record.payAmount,jdbcType=DECIMAL},
+      pay_code = #{record.payCode,jdbcType=INTEGER},
+      pay_name = #{record.payName,jdbcType=VARCHAR},
+      pay_time = #{record.payTime,jdbcType=TIMESTAMP},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      create_by = #{record.createBy,jdbcType=VARCHAR},
+      modify_date = #{record.modifyDate,jdbcType=TIMESTAMP},
+      modify_by = #{record.modifyBy,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ikang.interhosp.entity.InterHospOrder">
+    update inter_hosp_order
+    <set>
+      <if test="orgCode != null">
+        org_code = #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="reservationTime != null">
+        reservation_time = #{reservationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reservationFinishTime != null">
+        reservation_finish_time = #{reservationFinishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="visitTime != null">
+        visit_time = #{visitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="visitFinishTime != null">
+        visit_finish_time = #{visitFinishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="visitDeptCode != null">
+        visit_dept_code = #{visitDeptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="visitDeptName != null">
+        visit_dept_name = #{visitDeptName,jdbcType=VARCHAR},
+      </if>
+      <if test="visitDocId != null">
+        visit_doc_id = #{visitDocId,jdbcType=VARCHAR},
+      </if>
+      <if test="visitDocCode != null">
+        visit_doc_code = #{visitDocCode,jdbcType=VARCHAR},
+      </if>
+      <if test="visitDocName != null">
+        visit_doc_name = #{visitDocName,jdbcType=VARCHAR},
+      </if>
+      <if test="ptId != null">
+        pt_id = #{ptId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="medClassCode != null">
+        med_class_code = #{medClassCode,jdbcType=VARCHAR},
+      </if>
+      <if test="medClassName != null">
+        med_class_name = #{medClassName,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="ptName != null">
+        pt_name = #{ptName,jdbcType=VARCHAR},
+      </if>
+      <if test="ptHeadPic != null">
+        pt_head_pic = #{ptHeadPic,jdbcType=VARCHAR},
+      </if>
+      <if test="geCode != null">
+        ge_code = #{geCode,jdbcType=VARCHAR},
+      </if>
+      <if test="geName != null">
+        ge_name = #{geName,jdbcType=VARCHAR},
+      </if>
+      <if test="ptAge != null">
+        pt_age = #{ptAge,jdbcType=INTEGER},
+      </if>
+      <if test="ptBirthdate != null">
+        pt_birthdate = #{ptBirthdate,jdbcType=DATE},
+      </if>
+      <if test="idNo != null">
+        id_no = #{idNo,jdbcType=VARCHAR},
+      </if>
+      <if test="ptTel != null">
+        pt_tel = #{ptTel,jdbcType=VARCHAR},
+      </if>
+      <if test="diseasesCode != null">
+        diseases_code = #{diseasesCode,jdbcType=VARCHAR},
+      </if>
+      <if test="diseasesName != null">
+        diseases_name = #{diseasesName,jdbcType=VARCHAR},
+      </if>
+      <if test="complaintContent != null">
+        complaint_content = #{complaintContent,jdbcType=VARCHAR},
+      </if>
+      <if test="presentIllness != null">
+        present_illness = #{presentIllness,jdbcType=VARCHAR},
+      </if>
+      <if test="pastHistory != null">
+        past_history = #{pastHistory,jdbcType=VARCHAR},
+      </if>
+      <if test="illnessPic != null">
+        illness_pic = #{illnessPic,jdbcType=VARCHAR},
+      </if>
+      <if test="ptDistrict != null">
+        pt_district = #{ptDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="askOrMed != null">
+        ask_or_med = #{askOrMed,jdbcType=INTEGER},
+      </if>
+      <if test="procFile != null">
+        proc_file = #{procFile,jdbcType=VARCHAR},
+      </if>
+      <if test="statusCode != null">
+        status_code = #{statusCode,jdbcType=VARCHAR},
+      </if>
+      <if test="payFlowNumber != null">
+        pay_flow_number = #{payFlowNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="payAmount != null">
+        pay_amount = #{payAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="payCode != null">
+        pay_code = #{payCode,jdbcType=INTEGER},
+      </if>
+      <if test="payName != null">
+        pay_name = #{payName,jdbcType=VARCHAR},
+      </if>
+      <if test="payTime != null">
+        pay_time = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyDate != null">
+        modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyBy != null">
+        modify_by = #{modifyBy,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where med_rd_no = #{medRdNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ikang.interhosp.entity.InterHospOrder">
+    update inter_hosp_order
+    set org_code = #{orgCode,jdbcType=VARCHAR},
+      reservation_time = #{reservationTime,jdbcType=TIMESTAMP},
+      reservation_finish_time = #{reservationFinishTime,jdbcType=TIMESTAMP},
+      visit_time = #{visitTime,jdbcType=TIMESTAMP},
+      visit_finish_time = #{visitFinishTime,jdbcType=TIMESTAMP},
+      visit_dept_code = #{visitDeptCode,jdbcType=VARCHAR},
+      visit_dept_name = #{visitDeptName,jdbcType=VARCHAR},
+      visit_doc_id = #{visitDocId,jdbcType=VARCHAR},
+      visit_doc_code = #{visitDocCode,jdbcType=VARCHAR},
+      visit_doc_name = #{visitDocName,jdbcType=VARCHAR},
+      pt_id = #{ptId,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      med_class_code = #{medClassCode,jdbcType=VARCHAR},
+      med_class_name = #{medClassName,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      pt_name = #{ptName,jdbcType=VARCHAR},
+      pt_head_pic = #{ptHeadPic,jdbcType=VARCHAR},
+      ge_code = #{geCode,jdbcType=VARCHAR},
+      ge_name = #{geName,jdbcType=VARCHAR},
+      pt_age = #{ptAge,jdbcType=INTEGER},
+      pt_birthdate = #{ptBirthdate,jdbcType=DATE},
+      id_no = #{idNo,jdbcType=VARCHAR},
+      pt_tel = #{ptTel,jdbcType=VARCHAR},
+      diseases_code = #{diseasesCode,jdbcType=VARCHAR},
+      diseases_name = #{diseasesName,jdbcType=VARCHAR},
+      complaint_content = #{complaintContent,jdbcType=VARCHAR},
+      present_illness = #{presentIllness,jdbcType=VARCHAR},
+      past_history = #{pastHistory,jdbcType=VARCHAR},
+      illness_pic = #{illnessPic,jdbcType=VARCHAR},
+      pt_district = #{ptDistrict,jdbcType=VARCHAR},
+      ask_or_med = #{askOrMed,jdbcType=INTEGER},
+      proc_file = #{procFile,jdbcType=VARCHAR},
+      status_code = #{statusCode,jdbcType=VARCHAR},
+      pay_flow_number = #{payFlowNumber,jdbcType=VARCHAR},
+      pay_amount = #{payAmount,jdbcType=DECIMAL},
+      pay_code = #{payCode,jdbcType=INTEGER},
+      pay_name = #{payName,jdbcType=VARCHAR},
+      pay_time = #{payTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      modify_by = #{modifyBy,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where med_rd_no = #{medRdNo,jdbcType=VARCHAR}
+  </update>
+  <select id="treatmentOrder" resultMap="BaseResultMap">
+    select
+    med_rd_no ,
+    pt_name ,
+    ge_code,
+    ge_name,
+    visit_dept_name,
+    visit_dept_code,
+    med_class_name,
+    med_class_code,
+    visit_time,
+    visit_finish_time,
+    pt_head_pic,
+    pay_time ,
+    status_code
+    from inter_hosp_order a
+    where
+    <trim prefix="(" prefixOverrides="and" suffix=")">
+      <if test="queryStr != null and queryStr!=''">
+        and ( a.pt_name like "%"#{queryStr}"%"
+        or a.diseases_name like "%"#{queryStr}"%" )
+      </if>
+    </trim>
+    order by create_time desc
+    limit ${pageNum}, ${pageSize}
+  </select>
+  <select id="countOrder" resultType="java.lang.Long">
+    select
+    count(1)
+    from
+    inter_hosp_order a
+    where
+    <trim prefix="(" prefixOverrides="and" suffix=")">
+      <if test=" docId!= null and docId!=''">
+        and a.visit_doc_id = #{docId}
+      </if>
+      <if test=" startTime!= null and startTime!=''">
+        <![CDATA[    and a.visit_time >= #{startTime} ]]>
+      </if>
+      <if test=" endTime!= null and endTime!=''">
+        <![CDATA[   and a.visit_time <= #{endTime} ]]>
+      </if>
+      <if test=" serviceCode!= null and serviceCode!=''">
+        and a.med_class_code = #{serviceCode}
+      </if>
+      <if test=" status!= null and status!=''">
+        and a.status_code = #{status}
+      </if>
+      <if test="queryStr != null and queryStr!=''">
+          and ( a.pt_name like "%"#{queryStr}"%"
+          or a.diseases_name like "%"#{queryStr}"%" )
+      </if>
+    </trim>
+  </select>
+
+
+</mapper>
