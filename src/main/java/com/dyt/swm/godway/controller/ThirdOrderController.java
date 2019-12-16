@@ -1,9 +1,9 @@
 package com.dyt.swm.godway.controller;
 
 import com.dyt.swm.godway.common.BaseRetBean;
+import com.dyt.swm.godway.entity.ThirdOrderMsg;
 import com.dyt.swm.godway.service.ThirdOrderMsgService;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -16,17 +16,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Slf4j
 @RefreshScope
-@Api(value = "批处理管理API", description = "批量管理第三方医生等数据", tags = {"BatchController"})
-public class BatchController {
+@Api(value = "第三方订单", description = "第三方订单", tags = {"ThirdOrderController"})
+public class ThirdOrderController {
 
     @Autowired
     ThirdOrderMsgService thirdOrderMsgService;
 
 
     @GetMapping("add/log")
-    @ApiOperation(value = "关联第三方supplier平台医生和己方所有医院的医生")
     public BaseRetBean<Integer> searchandrefresh() {
-        
+        ThirdOrderMsg msg = new ThirdOrderMsg();
+
+        thirdOrderMsgService.addLog();
 
         return new BaseRetBean<>(1, "成功添加医生的关联的任务", 0, null);
     }

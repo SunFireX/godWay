@@ -17,14 +17,14 @@
             password="dyt_mysql_456" />
         <javaModelGenerator
             targetPackage="com.dyt.swm.godway.entity"
-            targetProject="godway/src/main/java" />
+            targetProject="src/main/java" />
         <sqlMapGenerator
             targetPackage="config.mybatis.mapper"
-            targetProject="godway/src/main/resources" />
+            targetProject="src/main/resources" />
         <javaClientGenerator
             type="XMLMAPPER"
             targetPackage="com.dyt.swm.godway.mybatis.mapper"
-            targetProject="godway/src/main/java" />
+            targetProject="src/main/java" />
 
         <table
             tableName="pavo_third_msg_record"

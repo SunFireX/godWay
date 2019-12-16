@@ -1,6 +1,5 @@
 server:
   port: 9090
-
 spring:
 # rabbitmq配置
   rabbitmq:
@@ -23,7 +22,7 @@ spring:
         max-concurrency: 10
   context-path: /
   datasource:
-     url: jdbc:mysql://uat.mysql.daoyitong.com/pavo_internet_hospital?useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&autoReconnect=true
+     url: jdbc:mysql://db.dyt.ikang.com/pavo_tailor?useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&autoReconnect=true
      data-source-class-name: com.mysql.jdbc.Driver
      username: daoyitong
      password: dyt_mysql_456
@@ -44,3 +43,6 @@ spring:
      test-while-idle: true
      read-only: true
      jdbc-interceptors: org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer
+mybatis:
+  mapper-locations: classpath*:config/mybatis/mapper/*.xml
+  type-aliases-package: com.dyt.swm.godway.entity

@@ -35,15 +35,18 @@ public class LruCache<K,V> {
         this.maxCapacity = maxCapacity;
         caches = new HashMap<>(maxCapacity);
         head = tail = new CacheNode();
-        head.after = tail; //对head 的after节点赋值, 防止后续操作出现空指针异常
-        tail.before = head; // 对tail的before节点赋值, 防止后续操作出现空指针异常
+        //对head 的after节点赋值, 防止后续操作出现空指针异常
+        head.after = tail;
+        // 对tail的before节点赋值, 防止后续操作出现空指针异常
+        tail.before = head;
     }
 
     public void put(K k, V v) {
         CacheNode node = caches.get(k);
         if (node == null) {
             if (currentCacheSize >= maxCapacity) {
-                caches.remove(tail.before.key); //淘汰尾部的元素
+                // 淘汰尾部的元素
+                caches.remove(tail.before.key);
                 removeLast();
             }
 
@@ -54,7 +57,8 @@ public class LruCache<K,V> {
         }
 
         node.value = v;
-        moveToFirst(node); // LRU策略, 新插入的元素放置到队列头部
+        // LRU策略, 新插入的元素放置到队列头部
+        moveToFirst(node);
         caches.put(k, node);
     }
 

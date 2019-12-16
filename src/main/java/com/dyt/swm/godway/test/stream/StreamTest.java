@@ -2,6 +2,7 @@ package com.dyt.swm.godway.test.stream;
 
 import com.alibaba.fastjson.JSON;
 import com.dyt.swm.godway.GodwayApplication;
+import com.dyt.swm.godway.test.model.Staff;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;

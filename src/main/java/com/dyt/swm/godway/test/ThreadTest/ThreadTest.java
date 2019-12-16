@@ -14,6 +14,7 @@ public class ThreadTest {
     public static void main(String[] args) {
         Map hashMap =  new HashMap<>();
         ConcurrentHashMap concurrentHashMap = new ConcurrentHashMap();
+        Map<String,String> map = new HashMap<>();
         //threadSort();
         new MyThread1().run();
         System.out.println("myThread>>>>>");
